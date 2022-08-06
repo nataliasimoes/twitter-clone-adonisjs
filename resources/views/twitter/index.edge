@@ -1,41 +1,64 @@
 @layout('layouts/main')
 
 @section('conteudo')
+<div class="col-6 mt-3 mx-auto ">
 <form action="{{route('twitter.store')}}" method="POST" >
     <div class="mb-2">
-        <textarea name="post" class="form-control" placeholder="fale algo"></textarea>
+        <textarea name="post" class="form-control" placeholder="O que está acontecendo?"></textarea>
     </div>
-    <div>
-        <button type="submit" class="btn btn-primary">ENVIAR</button>
+    <div class="d-flex flex-row-reverse">
+        <button type="submit" class="btn btn-primary rounded-pill">Tweet</button>
     </div>
 </form>
 
 @if(posts)
-<h2 class="mt-5">Postagens</h2>
-<div>
+<h3 class="mt-5">Feed</h3>
+<div class="border-bottom">
     @each(post in posts)
-    <section class="mb-4">
-        <strong>{{post.user.login}}</strong><a href="{{route ('twitter.follow', {id: post.user.id})}}"><i class="bi bi-person-plus"></i></a> escreveu:  
-        @can('deletePost', post)
-        <a href="{{route('twitter.delete', {id: post.id})}}"><i class="bi bi-trash-fill"></i></a>
+    <section class="mb-4 p-1">
+        <div class="d-flex justify-content-between">
+         <div>
+            <strong>{{post.user.nome}} </strong><span class="text-secondary">{{post.user.login}} </span><a href="{{route ('twitter.follow', {id: post.user.id})}}"> <i class="bi bi-person-plus"></i></a>
+         </div>
+        
+         <div>
+            @can('deletePost', post)
+        <div class="dropdown">
+            <a data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-three-dots-vertical"></i></a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{{route('twitter.delete', {id: post.id})}}">Excluir</a></li>
+            </ul>
+          </div>
         @end
-        <p>{{post.post}}</p>
+         </div>
+        
+        </div>
 
-        <section class="ms-4">
-            <h6>Comentários</h3>
+        <p class="text-secondary">{{post.post}}</p>
+
+        <section>
+            <h6>Comentários</h6>
             <form method="post" action="{{route('twitter.comment.store', {id: post.id})}}" class="d-flex">
                 <input type="text" name="comment" class="form-control" id="comment" >
-                <button type="submit" class="btn btn-success">Enviar</button>
+                <button type="submit" class="btn btn-primary rounded-pill"><i class="bi bi-send"></i></button>
             </form>
 
-            <div >
+            <div class="mt-3">
+                <div class="d-flex justify-content-between">
                 @each(comment in post.comments)
-                <strong>{{comment.user.login}}</strong>
+                <div>
+                    <strong>{{comment.user.nome}}</strong> <span class="text-secondary">{{comment.user.login}}</span>
                 <a href="{{route ('twitter.follow', {id: post.user.id})}}"><i class="bi bi-person-plus"></i></a>
+                </div>
                 @can('deletePost', post)
-                <a href="{{route('twitter.deleteComment', {id: comment.id})}}"><i class="bi bi-trash-fill"></i></a>
+                <div class="dropdown">
+                    <a  data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-three-dots-vertical"></i></a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="{{route('twitter.deleteComment', {id: comment.id})}}">Excluir</a></li>
+                    </ul>
+                  </div>
                 @end
-                commentou: 
+                </div>
                 <p>{{comment.comment}}</p>
                 @end
             </div>
@@ -44,4 +67,7 @@
     @end
 @end 
 </div>
+</div>
+
+
 @end

@@ -18,7 +18,11 @@
     <section class="mb-4 p-1">
         <div class="d-flex justify-content-between">
          <div>
-            <strong>{{post.user.nome}} </strong><span class="text-secondary">{{post.user.login}} </span><a href="{{route ('twitter.follow', {id: post.user.id})}}"> <i class="bi bi-person-plus"></i></a>
+            <strong>{{post.user.nome}} </strong><span class="text-secondary">{{post.user.login}} </span>
+            @component('components/icon', {
+                usuario: post.user
+            })
+            @end
          </div>
         
          <div>
@@ -59,7 +63,7 @@
                   </div>
                 @end
                 </div>
-                <p>{{comment.comment}}</p>
+                <p class="text-secondary">{{comment.comment}}</p>
                 @end
             </div>
         </section>

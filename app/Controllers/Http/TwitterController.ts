@@ -100,4 +100,19 @@ export default class TwitterController {
 
     response.redirect().back();
   }
+
+  async unFollow({ response, params, auth }: HttpContextContract) {
+    try {
+      const userIdA = auth.use("web").user?.id;
+      await Friend.query()
+        .orWhere({ userId1: params.id, userId2: userIdA })
+        .orWhere({ userId2: params.id, userId1: userIdA }).del()
+
+      
+    } catch (e) {
+      console.log(e);
+    }
+
+    response.redirect().back();
+  }
 }

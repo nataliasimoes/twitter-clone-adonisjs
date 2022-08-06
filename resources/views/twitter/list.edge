@@ -11,7 +11,10 @@
             title: user.nome
         })
         <span>@ {{user.login}}</span>
-        <button type="button" class="btn btn-light"><a href="{{route ('twitter.follow', {id: user.id})}}"><i class="bi bi-person-plus"></i></a></button>
+        @component('components/icon', {
+            usuario: user
+        })
+        @end
         @end
         </div>
     @end

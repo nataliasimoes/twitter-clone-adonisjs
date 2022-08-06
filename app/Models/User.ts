@@ -12,7 +12,7 @@ import {
 } from '@ioc:Adonis/Lucid/Orm'
 import Hash from '@ioc:Adonis/Core/Hash'
 import Post from 'App/Models/Post'
-
+import Friend from 'App/Models/Friend'
 export default class User extends BaseModel {
   @column({ isPrimary: true })
   public id: number
@@ -56,4 +56,18 @@ export default class User extends BaseModel {
   public static notMyself = scope((query, user:User) => {
     query.whereNot('id', user.id)
   })
+
+  public async hasFriend(user: User){
+    const friendship = await Friend.query().orWhere(
+      { 'userId1': user.id, 'userId2': this.id },
+    ).orWhere({ 'userId1': this.id, 'userId2': user.id })
+      
+    if(friendship.length > 0){
+      return true
+    }else{
+      return false
+    }
+  };
+  
+
 }

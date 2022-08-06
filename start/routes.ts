@@ -57,6 +57,8 @@ Route.group(() => {
         .as('twitter.deleteComment')
     Route.get('/follow/:id', 'TwitterController.follow')
         .as('twitter.follow')
+    Route.get('/unfollow/:id', 'TwitterController.unFollow')
+        .as('twitter.unfollow')    
     Route.get('/userlist', 'TwitterController.list')
         .as('twitter.list')
 }).prefix('twitter').middleware('auth').where('id', /^[0-9]+$/)

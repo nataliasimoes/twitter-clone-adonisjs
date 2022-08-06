@@ -1,5 +1,5 @@
 @if(await auth.user.hasFriend(usuario))
-<a class="btn btn-light" href="{{route ('twitter.follow', {id: usuario.id})}}"><i class="bi bi-person-plus"></i></a>
+<a class="btn btn-light" href="{{route ('twitter.unfollow', {id: usuario.id})}}"><i class="bi bi-person-dash"></i></a>
 @else
-<a class="btn btn-light" href="{{route ('twitter.follow', {id: usuario.id})}}"><i class="bi bi-person-dash"></i></a>
+<a class="btn btn-light" href="{{route ('twitter.follow', {id: usuario.id})}}"><i class="bi bi-person-plus"></i></a>
 @end

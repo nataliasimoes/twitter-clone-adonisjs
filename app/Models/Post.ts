@@ -56,4 +56,8 @@ export default class Post extends BaseModel {
     });
     query.orderBy("id", "desc");
   });
+
+  public static timeLineProfile = scope((query, user: User) => {
+      query.where("user_id", user.id);
+  })
 }

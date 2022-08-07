@@ -18,7 +18,7 @@
     <section class="mb-4 p-1">
         <div class="d-flex justify-content-between">
          <div>
-            <strong>{{post.user.nome}} </strong><span class="text-secondary">{{post.user.login}} </span>
+            <a class="text-decoration-none text-dark" href="{{route ('twitter.profile', {id: post.user.id})}}"><strong>{{post.user.nome}} </strong></a><span class="text-secondary">{{post.user.login}} </span>
             @component('components/icon', {
                 usuario: post.user
             })

@@ -18,6 +18,7 @@
 |
 */
 
+import { Router } from '@adonisjs/core/build/standalone'
 import Route from '@ioc:Adonis/Core/Route'
 
 Route.get('/', 'TwitterController.index').as('index').middleware('auth')
@@ -61,4 +62,6 @@ Route.group(() => {
         .as('twitter.unfollow')    
     Route.get('/userlist', 'TwitterController.list')
         .as('twitter.list')
+    Route.get('/:id/profile', 'TwitterController.profile')
+        .as('twitter.profile')
 }).prefix('twitter').middleware('auth').where('id', /^[0-9]+$/)

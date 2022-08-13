@@ -1,10 +1,14 @@
-<div class="card shadow-sm mt-md-3 bg-body rounded">
+<div class="card shadow-sm mb-4 bg-body rounded">
     @if (imageSrc)
         <img src="{{ imageSrc }}" class="card-img-top" alt="...">
     @end
     <div class="card-body">
         @if (user)
             <a class="text-decoration-none text-dark" href="{{route ('twitter.profile', {id: user.id})}}"><strong>{{user.nome}} </strong>
+        @end
+
+        @if (title)
+            <h5>{{title}}</h5>
         @end
         
         <p class="card-text">

@@ -1,5 +1,4 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
-import { scope } from "@ioc:Adonis/Lucid/Orm";
 import Comment from "App/Models/Comment";
 import Post from "App/Models/Post";
 import Friend from "App/Models/Friend";
@@ -19,6 +18,16 @@ export default class TwitterController {
     });
   }
 
+  async profile({ view, params }: HttpContextContract) {
+    const posts = await Post.query().where("userId", params.id)
+      .withScopes((scopes) => scopes.notDeleted())
+      .preload("user")
+    const user = await User.findOrFail(params.id)
+    return view.render("twitter/profile", {
+      posts, user
+    });
+  }
+  
   async list({ view, auth }: HttpContextContract) {
     const usuarios = await User.query().orderBy("created_at", "desc").withScopes((scopes) => scopes.notMyself(auth.use("web").user));
     return view.render("twitter/list", {

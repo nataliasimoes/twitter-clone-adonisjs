@@ -1,7 +1,7 @@
 @layout('layouts/main')
 
 @section('conteudo')
-<h1>Usuários</h1>
+<h2 class="mt-5">Usuários</h2>
 <div class="mb-3">
     <a href="{{ route('usuarios.create') }}" class="btn btn-primary">Novo usuário</a>
 </div>
@@ -10,8 +10,6 @@
         <div class="col-12 col-md-4">
         @component('components/card', {
             title: usuario.nome,
-            // link: '',
-            // buttonText: 'Ver notícia'
         })
             <a href="{{ route('usuarios.edit', { id: usuario.id }) }}" class="btn btn-primary">
                 Editar

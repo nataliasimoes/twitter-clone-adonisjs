@@ -6,11 +6,12 @@
 <h2 class="mt-5">Todos os Usuários</h2>
 <div class="row">
     @each(user in usuarios)
-    <div class="col-12 col-md-4 ml-1 mt-5">
+    <div class="col-12 col-md-4 ml-1 mt-3">
         @component('components/card', {
-            title: user.nome
+            user: user
+            
         })
-        <span>@ {{user.login}}</span>
+        <span>{{user.login}}</span>
         @component('components/icon', {
             usuario: user
         })

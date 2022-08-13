@@ -1,18 +1,18 @@
 <!-- menu.edge -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
+      <a class="navbar-brand" href="#">
+        <img src="https://upload.wikimedia.org/wikipedia/pt/thumb/3/3d/Twitter_logo_2012.svg/2534px-Twitter_logo_2012.svg.png" alt="" width="30" height="24">
+      </a>
+      
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+      <div class="collapse navbar-collapse justify-content-between m5-5" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{{ route('index') }}">Home</a>
+            <a class="nav-link active" aria-current="page" href="{{ route('index') }}">Feed</a>
           </li>
-          {{--  <li class="nav-item">
-            <a class="nav-link" href="{{ route('noticias.index') }}">Notícias</a>
-          </li>  --}}
           <li class="nav-item">
             <a class="nav-link" href="{{ route('usuarios.index') }}">Usuários</a>
           </li>
@@ -24,11 +24,11 @@
         <div>
           @if(auth.isLoggedIn)
             <span class="navbar-text">
-              Olá {{auth.user.login}}
+              Olá, {{auth.user.nome}}!
             </span>
-            <a class="btn btn-outline-success" href="{{ route('auth.logout') }}">Logout</a>
+            <a class="btn btn-outline-primary" href="{{ route('auth.logout') }}">Logout</a>
           @else
-            <a class="btn btn-outline-success" href="{{ route('auth.index') }}">Login</a>
+            <a class="btn btn-outline-primary" href="{{ route('auth.index') }}">Login</a>
           @end
 
           

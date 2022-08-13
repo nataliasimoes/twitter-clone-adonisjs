@@ -1,0 +1,43 @@
+@layout('layouts/main')
+
+@section('conteudo')
+
+<div class="col-md-6 mt-3 mx-auto ">
+  <div>
+  @component('components/profileCard', {
+    title: user.nome
+  })
+  @end
+</div>
+
+@each(post in posts)
+
+<section class="mb-4 p-1">
+  <div class="d-flex justify-content-between">
+   <div>
+      <strong>{{post.user.nome}} </strong><span class="text-secondary">{{post.user.login}} </span>
+      @component('components/icon', {
+          usuario: post.user
+      })
+      @end
+   </div>
+  
+   <div>
+      @can('deletePost', post)
+  <div class="dropdown">
+      <a data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-three-dots-vertical"></i></a>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="{{route('twitter.delete', {id: post.id})}}">Excluir</a></li>
+      </ul>
+    </div>
+  @end
+   </div>
+  
+  </div>
+
+  <p class="text-secondary">{{post.post}}</p>
+
+</section>
+<div>
+@end
+@end

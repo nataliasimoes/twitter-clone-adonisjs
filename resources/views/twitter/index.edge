@@ -43,6 +43,21 @@
 
             <p class="text-secondary">{{post.post}}</p>
 
+            <div class="icons row text-center mb-4 mt-3">
+                <div class="col">
+                    <a><i class="bi bi-chat"></i></a>
+                </div>
+                <div class="col">
+                    <a><i class="bi bi-heart"></i></a>
+                </div>
+                <div class="col">
+                    <a><i class="bi bi-share"></i></a>
+                </div>
+                <div class="col">
+                    <a><i class="bi bi-bookmark"></i></a>
+                </div>
+            </div>
+
             <section>
                 <form method="post" action="{{route('twitter.comment.store', {id: post.id})}}" class="d-flex">
                     <input type="text" name="comment" class="form-control rounded-pill"

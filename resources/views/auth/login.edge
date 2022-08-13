@@ -1,6 +1,8 @@
 @layout('layouts/main')
 
 @section('conteudo')
+<div class="col-md-5 mt-3 mx-auto ">
+
 <h1>Autenticação</h1>
 
 <form action="{{ route('auth.login') }}" method="post">
@@ -18,4 +20,5 @@
         <button type="submit" class="btn btn-primary">Entrar</button>
     </div>
 </form>
+</div>
 @end

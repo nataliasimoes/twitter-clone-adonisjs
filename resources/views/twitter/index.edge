@@ -1,7 +1,7 @@
 @layout('layouts/main')
 
 @section('conteudo')
-<div class="col-6 mt-3 mx-auto ">
+<div class="col-md-6 mt-3 mx-auto ">
 <form action="{{route('twitter.store')}}" method="POST" >
     <div class="mb-2">
         <textarea name="post" class="form-control" placeholder="O que está acontecendo?"></textarea>
@@ -15,7 +15,7 @@
 <h3 class="mt-5">Feed</h3>
 <div class="border-bottom">
     @each(post in posts)
-    <section class="mb-4 p-1">
+    <section class="mb-md-4 p-1 shadow-sm p-3 bg-body rounded">
         <div class="d-flex justify-content-between">
          <div>
             <a class="text-decoration-none text-dark" href="{{route ('twitter.profile', {id: post.user.id})}}"><strong>{{post.user.nome}} </strong></a><span class="text-secondary">{{post.user.login}} </span>
@@ -32,7 +32,7 @@
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="{{route('twitter.delete', {id: post.id})}}">Excluir</a></li>
             </ul>
-          </div>
+        </div>
         @end
          </div>
         
@@ -51,8 +51,11 @@
                 <div class="d-flex justify-content-between">
                 @each(comment in post.comments)
                 <div>
-                    <strong>{{comment.user.nome}}</strong> <span class="text-secondary">{{comment.user.login}}</span>
-                <a href="{{route ('twitter.follow', {id: post.user.id})}}"><i class="bi bi-person-plus"></i></a>
+                    <a class="text-decoration-none text-dark" href="{{route ('twitter.profile', {id: post.user.id})}}"><strong>{{comment.user.nome}} </strong></a><span class="text-secondary">{{comment.user.login}}</span>
+                    @component('components/icon', {
+                        usuario: comment.user
+                    })
+                    @end
                 </div>
                 @can('deletePost', post)
                 <div class="dropdown">

@@ -26,9 +26,9 @@
             <span class="navbar-text">
               Olá, {{auth.user.login}}!
             </span>
-            <a class="btn btn-outline-success" href="{{ route('auth.logout') }}">Logout</a>
+            <a class="btn btn-outline-primary" href="{{ route('auth.logout') }}">Logout</a>
           @else
-            <a class="btn btn-outline-success" href="{{ route('auth.index') }}">Login</a>
+            <a class="btn btn-outline-primary" href="{{ route('auth.index') }}">Login</a>
           @end
 
           

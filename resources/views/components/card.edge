@@ -1,16 +1,16 @@
-<div class="card">
+<div class="card shadow-sm mt-md-3 bg-body rounded">
     @if (imageSrc)
         <img src="{{ imageSrc }}" class="card-img-top" alt="...">
     @end
     <div class="card-body">
-        @if (title)
-            <h5 class="card-title">{{ title }}</h5>
+        @if (user)
+            <a class="text-decoration-none text-dark" href="{{route ('twitter.profile', {id: user.id})}}"><strong>{{user.nome}} </strong>
         @end
-        {{--  @if (body)  --}}
+        
         <p class="card-text">
             {{{ await $slots.main() }}}
         </p>
-        {{--  @end  --}}
+        
 
         @if (link && buttonText)
             <a href="{{ link }}" class="btn btn-primary">
